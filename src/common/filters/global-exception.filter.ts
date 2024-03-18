@@ -28,13 +28,13 @@ export class GlobalExceptionFilter implements ExceptionFilter {
       message = exception.getResponse();
     }
 
-    if (message instanceof APIException) {
-      response.status(message.status).send({
-        code: HttpStatus[message.status],
-        status: message.status,
+    if (exception instanceof APIException) {
+      response.status(exception.status).send({
+        code: HttpStatus[exception.status],
+        status: exception.status,
 
-        data: message.data,
-        message: message.message,
+        data: exception.data,
+        message: exception.message,
         responseAt: responseAt,
       });
       return;
