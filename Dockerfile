@@ -2,17 +2,14 @@ FROM node:20-alpine
 
 WORKDIR /usr/src/app
 
-COPY .yarn ./.yarn
-COPY .yarnrc.yml ./
-
 COPY package.json ./
-COPY yarn.lock ./
+COPY pnpm-lock.yaml ./
 
-RUN yarn install --immutable
+RUN pnpm install --frozen-lockfile
 
 COPY . .
 
-RUN yarn build
+RUN pnpm build
 
 EXPOSE 4000
-CMD [ "yarn", "node", "dist/src/main.js" ]
+CMD [ "node", "dist/src/main.js" ]
