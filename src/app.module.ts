@@ -22,6 +22,7 @@ import { AppController } from './app.controller';
       : CacheModule.register({
           isGlobal: true,
         }),
+    AppModule,
   ],
   controllers: [AppController],
 })

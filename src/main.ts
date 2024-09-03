@@ -1,5 +1,7 @@
 import { NestFactory } from '@nestjs/core';
 import { SwaggerModule, DocumentBuilder } from '@nestjs/swagger';
+import { NestjsRedoxModule } from 'nestjs-redox';
+
 import {
   FastifyAdapter,
   NestFastifyApplication,
@@ -7,6 +9,7 @@ import {
 
 import { AppModule } from './app.module';
 import { version } from '../package.json';
+
 import { GlobalExceptionFilter } from './common/filters/global-exception.filter';
 import { TransformInterceptor } from './common/interceptors/transform.interceptor';
 
@@ -24,24 +27,31 @@ async function bootstrap() {
       .build();
 
     const document = SwaggerModule.createDocument(app, config);
+
     await SwaggerModule.setup('docs', app, document);
+    await NestjsRedoxModule.setup('redoc', app, document);
   }
 
   if (process.env.GLOBAL_CORS === '1') {
-    app.enableCors();
+    app.enableCors({
+      origin: '*',
+      credentials: true,
+    });
   } else {
     app.enableCors({
-      origin: [
-        // Specify your domains here
-      ],
-      credentials: true,
+      origin: [],
+      // credentials: true,
     });
   }
 
   app.useGlobalFilters(new GlobalExceptionFilter());
   app.useGlobalInterceptors(new TransformInterceptor());
 
-  await app.listen(3000, '0.0.0.0');
+  if (process.env.NODE_ENV === 'development') {
+    await app.listen(3000);
+  } else {
+    await app.listen(3000, '0.0.0.0');
+  }
 }
 
 bootstrap();
