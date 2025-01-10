@@ -28,7 +28,7 @@
     "@nestjs/platform-fastify": "^10.4.1",
     "@nestjs/swagger": "^7.4.0",
     "axios": "^1.7.7",
-    "cache-manager": "^5.7.6",
+    "cache-manager": "^6.0.0",
     "cache-manager-redis-yet": "^5.1.4",
     "fastify": "^4.28.1",
     "nestjs-redox": "^1.2.1",
