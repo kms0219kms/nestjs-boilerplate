@@ -1,5 +1,5 @@
-import { Controller, Get } from '@nestjs/common';
-import { ApiOperation, ApiProperty, ApiTags } from '@nestjs/swagger';
+import { Controller, Get } from '@nestjs/common'
+import { ApiOperation, ApiProperty, ApiTags } from '@nestjs/swagger'
 
 class rootAccessDto {
   /**
@@ -7,7 +7,7 @@ class rootAccessDto {
    * @example hacking
    */
   @ApiProperty({ example: 'hacking' })
-  happy: string = 'hacking';
+  happy: string = 'hacking'
 }
 
 @ApiTags('Common - Health Check API')
@@ -16,9 +16,9 @@ export class AppController {
   @Get()
   @ApiOperation({
     summary: 'Health Check',
-    description: 'Check the server is running',
+    description: '서버 상태를 확인합니다.',
   })
   rootAccess(): rootAccessDto {
-    return { happy: 'hacking' };
+    return { happy: 'hacking' }
   }
 }
