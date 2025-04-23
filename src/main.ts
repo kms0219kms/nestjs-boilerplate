@@ -22,14 +22,14 @@ async function bootstrap() {
   if (process.env.ENABLE_SWAGGER !== '0') {
     const config = new DocumentBuilder()
       .setTitle('Specify your title here')
-      .setDescription('Specify your description here..')
+      .setDescription('Specify your description here.')
       .setVersion(version)
       .build()
 
     const document = SwaggerModule.createDocument(app, config)
 
     SwaggerModule.setup('docs', app, document)
-    await NestjsRedoxModule.setup('redoc', app, document, {
+    NestjsRedoxModule.setup('redoc', app, document, {
       standalone: true,
     })
   }
@@ -37,12 +37,12 @@ async function bootstrap() {
   if (process.env.GLOBAL_CORS === '1') {
     app.enableCors({
       origin: '*',
-      credentials: true,
+      // credentials: true,
     })
   } else {
     app.enableCors({
       origin: [],
-      // credentials: true,
+      credentials: true,
     })
   }
 
@@ -50,9 +50,9 @@ async function bootstrap() {
   app.useGlobalInterceptors(new TransformInterceptor())
 
   if (process.env.NODE_ENV === 'development') {
-    await app.listen(3000)
+    await app.listen(4000)
   } else {
-    await app.listen(3000, '0.0.0.0')
+    await app.listen(4000, '0.0.0.0')
   }
 }
 
