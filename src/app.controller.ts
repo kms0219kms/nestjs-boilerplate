@@ -1,7 +1,7 @@
 import { Controller, Get } from '@nestjs/common'
 import { ApiOperation, ApiProperty, ApiTags } from '@nestjs/swagger'
 
-class rootAccessDto {
+class RootAccessDto {
   /**
    * Default return
    * @example hacking
@@ -18,7 +18,7 @@ export class AppController {
     summary: 'Health Check',
     description: '서버 상태를 확인합니다.',
   })
-  rootAccess(): rootAccessDto {
+  rootAccess(): RootAccessDto {
     return { happy: 'hacking' }
   }
 }

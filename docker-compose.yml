@@ -1,15 +1,15 @@
 version: '3.8'
 
 services:
-  redis:
-    image: redis:7.4-alpine
+  valkey:
+    image: valkey/valkey:8-alpine
     ports:
       - 6379:6379
-    command: redis-server /usr/local/etc/redis/redis.conf
+    command: valkey-server /usr/local/etc/valkey/valkey.conf
     volumes:
-      - ./redis/data:/data
-      - ./redis/conf/redis.conf:/usr/local/etc/redis/redis.conf
+      - ./valkey/data:/data
+      - ./valkey/conf/valkey.conf:/usr/local/etc/valkey/valkey.conf
     labels:
-      - 'name=redis'
+      - 'name=valkey'
       - 'mode=standalone'
     restart: always
