@@ -2,7 +2,7 @@ import { Module } from '@nestjs/common'
 import { ConfigModule, ConfigService } from '@nestjs/config'
 import { CacheModule } from '@nestjs/cache-manager'
 
-import KeyvRedis from '@keyv/redis'
+import KeyvValkey from '@keyv/valkey'
 
 import { AppController } from './app.controller'
 
@@ -12,10 +12,10 @@ import { AppController } from './app.controller'
       isGlobal: true,
       envFilePath: ['.env.development', '.env'],
     }),
-    process.env.ENABLE_REDIS === '1'
+    process.env.ENABLE_VALKEY === '1'
       ? CacheModule.registerAsync({
           useFactory: async (configService: ConfigService) => ({
-            stores: [new KeyvRedis(configService.getOrThrow('REDIS_URI'))],
+            stores: [new KeyvValkey(configService.getOrThrow('VALKEY_URI'))],
           }),
           inject: [ConfigService],
           isGlobal: true,
