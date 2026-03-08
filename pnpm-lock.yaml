@@ -62,7 +62,7 @@ importers:
         version: 3.3.1
       '@eslint/js':
         specifier: ^9.32.0
-        version: 9.32.0
+        version: 9.39.4
       '@nestjs/cli':
         specifier: ^11.0.10
         version: 11.0.10(@types/node@24.2.0)
@@ -195,6 +195,10 @@ packages:
 
   '@eslint/js@9.32.0':
     resolution: {integrity: sha512-BBpRFZK3eX6uMLKz8WxFOBIFFcGFJ/g8XuwjTHCqHROSIsopI+ddn/d5Cfh36+7+e5edVS8dbSHnBNhrLEX0zg==}
+    engines: {node: ^18.18.0 || ^20.9.0 || >=21.1.0}
+
+  '@eslint/js@9.39.4':
+    resolution: {integrity: sha512-nE7DEIchvtiFTwBw4Lfbu59PG+kCofhjsKaCWzxTpt4lfRjRMqG6uMBzKXuEcyXhOHoUp9riAm7/aWYGhXZ9cw==}
     engines: {node: ^18.18.0 || ^20.9.0 || >=21.1.0}
 
   '@eslint/object-schema@2.1.6':
@@ -1302,6 +1306,7 @@ packages:
   glob@11.0.3:
     resolution: {integrity: sha512-2Nim7dha1KVkaiF4q6Dj+ngPPMdfvLJEOpZk/jKiUAkqKebpGAWQXAq9z1xu9HKu5lWfqw/FASuccEjyznjPaA==}
     engines: {node: 20 || >=22}
+    deprecated: Old versions of glob are not supported, and contain widely publicized security vulnerabilities, which have been fixed in the current version. Please update. Support for old versions may be purchased (at exorbitant rates) by contacting i@izs.me
     hasBin: true
 
   globals@14.0.0:
@@ -2451,6 +2456,8 @@ snapshots:
       - supports-color
 
   '@eslint/js@9.32.0': {}
+
+  '@eslint/js@9.39.4': {}
 
   '@eslint/object-schema@2.1.6': {}
 
