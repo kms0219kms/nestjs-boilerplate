@@ -1,6 +1,6 @@
 import { NestFactory } from '@nestjs/core'
 import { SwaggerModule, DocumentBuilder } from '@nestjs/swagger'
-import { NestjsRedoxModule } from 'nestjs-redox'
+import { apiReference } from '@scalar/nestjs-api-reference'
 
 import {
   FastifyAdapter,
@@ -29,9 +29,14 @@ async function bootstrap() {
     const document = SwaggerModule.createDocument(app, config)
 
     SwaggerModule.setup('docs', app, document)
-    NestjsRedoxModule.setup('redoc', app, document, {
-      standalone: true,
-    })
+
+    app.use(
+      '/scalar',
+      apiReference({
+        content: document,
+        withFastify: true,
+      }),
+    )
   }
 
   if (process.env.GLOBAL_CORS === '1') {
