@@ -2,7 +2,7 @@ version: '3.8'
 
 services:
   valkey:
-    image: valkey/valkey:8-alpine
+    image: valkey/valkey:9-alpine
     ports:
       - 6379:6379
     command: valkey-server /usr/local/etc/valkey/valkey.conf
